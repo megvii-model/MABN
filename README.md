@@ -10,7 +10,7 @@ The paper has been published as an ICLR2020 conference paper (https://openreview
 
 Top 1 Error versus Batch Size:
 
-<img src="https://uc23c04615403e17cfed78ccacc6.previews.dropboxusercontent.com/p/thumb/AApzTU_479fgUugJranC19juFKPjXUlOgbr2D6GpIje1c0f6aXL_VLQYmQ1ojgHTqSoPhXsDcyN7-dPXL3xgw9rXdckmGKgHR09Q5ihJAVeMUu5SwFcCmJHPidCPP9mo-ILrKKnInM6ohDdiV1541Ie9ozRy-PGHOlQ8zgu0z7JndBVBgw7Ave8gN1-ixsrPw-ANRBNZwmZTgfAha4BsCvJLU3E3pjaFm8BysoHn3UbHwOWaGdUuLDPDrfCNG0cWHBkqRJaimFhwG44y7-4W2wV_2_4V8s0Wj9vtkvWzIyGuOx6nWoqY0ID9iE9L8GhNZdJZ6qR6IE2hRVSenWmVVa43hbLj4QCWOOOLcjGDE0L4O_HwddjoFipHzSkLFsuZyD5NQiaWwasvNroMGm0G41jJ/p.png?fv_content=true&size_mode=5" width="500" height="350" />
+<img src="https://github.com/megvii-model/MABN/blob/master/figures/figure.png" width="500" height="350" />
 
 Inference Speend
 
