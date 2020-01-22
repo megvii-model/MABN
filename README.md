@@ -1,4 +1,4 @@
-# Moving Averge Batch Normalization
+# Moving Average Batch Normalization
 
 This reposity is the Pytorch implementation of **Moving Average Batch Normalization** on Imagenet classfication, COCO object detection and instance segmentation tasks. Notice the Imagenet classification simulate the small batch training settings by using small normalization batch size and regular SGD batch size. 
 
