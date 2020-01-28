@@ -1,6 +1,6 @@
 # Moving Average Batch Normalization
 
-This reposity is the Pytorch implementation of **Moving Average Batch Normalization** on Imagenet classfication, COCO object detection and instance segmentation tasks. Notice the Imagenet classification simulate the small batch training settings by using small normalization batch size and regular SGD batch size. 
+This reposity is the Pytorch implementation of **Moving Average Batch Normalization** on Imagenet classfication, COCO object detection and instance segmentation tasks. 
 
 The paper has been published as an ICLR2020 conference paper (https://openreview.net/forum?id=SkgGjRVKDS&noteId=BJeCWt3KiH).
 
@@ -40,12 +40,18 @@ Inference Speend
 | R50-FPN | Mask R-CNN | 2x fine-tune | SyncBN | 2x8 | 38.25 | 57.81 | 42.01 | 34.22 | 54.97 | 36.34 | 
 | R50-FPN | Mask R-CNN | 2x fine-tune | MABN | 2 | 38.42 | 58.19 | 41.99 | 34.12 | 55.10 | 36.12 |
 
+## Usage
+
+The formal implementation of MABN is in **MABN.py**. You can use MABN by directly replacing **torch.nn.BatchNorm2d** and **torch.nn.Conv2d** with **MABN2d** and **CenConv2d** respectively in your project. Please don't forget to set extra args in MABN2d.
 
 ## Demo
 
 One node with 8 GPUs.
 
 ### Imagenet
+
+**Notice the Imagenet classification simulate the small batch training settings by using small normalization batch size and regular SGD batch size.**
+
 ```bash
 cd /your_path_to_repo/cls
 
@@ -65,6 +71,9 @@ python3 -m torch.distributed.launch --nproc_per_node=1 train.py --gpu_num=1 \
 ```
 
 ### COCO
+
+#### Install
+
 Please refer to [INSTALL.md](det/INSTALL.md) for installation and dataset preparation.
 
 To use SyncBN, please do:
@@ -72,8 +81,19 @@ To use SyncBN, please do:
 cd /your_path_to_repo/det/maskrcnn_benchmar/distributed_syncbn
 bash compile.sh
 ```
-You can download the pretrained model of ResNet-50 in [here](https://www.dropbox.com/sh/fbsi6935vmatbi9/AAA2jv0EBcSgySTgZnNZ3lmPa?dl=0). Notice R-50-2.pkl is the pretrained model for SyncBN while R50-wc.pth is for MABN.
 
+#### Imagenet Pretrained model
+
+You can download the pretrained model of ResNet-50 in: 
+
+Dropbox: https://www.dropbox.com/sh/fbsi6935vmatbi9/AAA2jv0EBcSgySTgZnNZ3lmPa?dl=0 ;
+
+Baiduyun: https://pan.baidu.com/s/1Md_UzwWEiZZKu84R0yZ6aw password: zww2 . 
+
+Notice **R-50-2.pkl** is the for SyncBN, while **R50-wc.pth** is for MABN.
+
+
+#### Run Experiment
 
 ```bash
 cd /your_path_to_repo/det
@@ -100,7 +120,7 @@ python3 -m torch.distributed.launch --nproc_per_node=8 tools/test_net.py \
 
 ## Thanks 
 
-This implementation of COCO is based on [maskrcnn-benchmark](https://github.com/facebookresearch/maskrcnn-benchmark). Ref to this link for more details about [maskrcnn-benchmark](https://github.com/facebookresearch/maskrcnn-benchmark).
+This implementation of COCO is based on maskrcnn-benchmark. Ref to this [link](https://github.com/facebookresearch/maskrcnn-benchmark) for more details about maskrcnn-benchmark.
 
 ## Citation 
 
