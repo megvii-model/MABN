@@ -61,7 +61,7 @@ def main():
     if not args.test_only:
         assert os.path.exists(args.train_dir)
         args.train_dataloader = get_train_dataloader(args.train_dir, \
-             args.batch_size//args.gpu_num,args.local_rank)
+             args.batch_size//args.gpu_num, args.total_epoch,args.local_rank)
 
     assert os.path.exists(args.val_dir)
     if args.local_rank == 0:

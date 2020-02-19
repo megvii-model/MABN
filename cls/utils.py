@@ -241,7 +241,7 @@ class LabelSmoothCrossEntropyLoss(_Loss):
 
         return loss
 
-def get_train_dataloader(train_dir, batch_size, total_iters,local_rank):
+def get_train_dataloader(train_dir, batch_size, total_epochs, local_rank):
     eigvec = np.array([
         [-0.5836, -0.6948,  0.4203],
         [-0.5808, -0.0045, -0.8140],
@@ -260,7 +260,7 @@ def get_train_dataloader(train_dir, batch_size, total_iters,local_rank):
 
     datasampler = Random_Batch_Sampler(
         train_dataset, batch_size=batch_size,
-        total_iters=total_iters*50000, rank=local_rank)
+        total_iters=total_epochs*5000, rank=local_rank)
     train_loader = torch.utils.data.DataLoader(
         train_dataset, num_workers=8,
         pin_memory=True, batch_sampler=datasampler)
@@ -268,7 +268,7 @@ def get_train_dataloader(train_dir, batch_size, total_iters,local_rank):
     return train_loader
 
 def get_val_dataloader(val_dir):
-    val_dataset = datasets.ImageFolder(train_dir, 
+    val_dataset = datasets.ImageFolder(val_dir, 
         transforms.Compose([
                 OpencvResize(256),
                 transforms.CenterCrop(224),
