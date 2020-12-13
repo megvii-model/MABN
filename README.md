@@ -25,10 +25,10 @@ Inference Speend
 
 | Model | Normalization Batch size | Norm | Top 1 Accuracy |
 |:--------:|:-----------:|:----:|:------:|
-| ResNet50 | 32 | BN | 23.41 |
-| ResNet50 | 2 | BN | 35.22 |
-| ResNet50 | 2 | BRN | 30.29 |
-| ResNet50 | 2 | MABN | 23.67 | 
+| ResNet50 | 32 | BN | 76.59 |
+| ResNet50 | 2 | BN | 64.78 |
+| ResNet50 | 2 | BRN | 69.71 |
+| ResNet50 | 2 | MABN | 76.33 | 
 
 ### COCO 
 | Backbone | Method | Training Strategy | Norm | Batch Size | AP<sup>b</sup> | AP<sup>b</sup><sub>0.50</sub> | AP<sup>b</sup><sub>0.75</sub> | AP<sup>m</sup> | AP<sup>m</sup><sub>0.50</sub> | AP<sup>m</sup><sub>0.75</sub> |
