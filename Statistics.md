@@ -4,9 +4,9 @@ This tutorial explains how to visualize statistics of BN mentioned in our paper.
 
 ## 1. Visualization command
 
-We provide a visualization tool for batch statistics. You can find it in [`cls/stat_util.py`](./cls/stat_util.py).
+We provide a visualize tool for batch statistics. You can find it in [`cls/stat_util.py`](./cls/stat_util.py).
 
-If you would like to visualize batch statistics, remember first replace `MABN` with naive `BN`. Then run `train.py` with option `--record_statistics`. The total command is like: 
+Please first replace `MABN` with naive `BN`, then run `train.py` with option `--record_statistics`. The total command is like: 
 
 ```shell
 python -m torch.distributed.launch --nproc_per_node=8 train.py  \       
@@ -14,12 +14,11 @@ python -m torch.distributed.launch --nproc_per_node=8 train.py  \
     --train_dir ./your_imagenet_training_dataset_dir \
     --val_dir ./your_imagenet_eval_dataset_dir \
     --gpu_num=8 --record_statistics --batch_size 256
-
 ```
 
-## 2. Check the visualization result
+## 2. Visualization result
 
-We give a example in running experiments with batch size 2 and batch size 32. We sample one layer for visuialize, most layers are similar. Batch statistics **collapse much faster** in small batch setting.
+Following figures illustrate batch statistics with batch size 2 and batch size 32. Batch statistics **collapse much faster** in small batch settings. (We randomly visualize one BN layer here, most BN layers have the same phenomenon.)
 
 Visualization of four statistics mentioned in our paper.
 1. $\mu_{\mathcal{B}}$
