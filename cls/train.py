@@ -13,6 +13,8 @@ from tqdm import tqdm
 
 from utils import accuracy, AvgrageMeter, LabelSmoothCrossEntropyLoss, save_checkpoint, sgd_optimizer, get_train_dataloader, get_val_dataloader
 from networks.resnet import resnet50
+from stat_util import StatisticsUtil
+
 
 def get_args():
     parser = argparse.ArgumentParser("ResNet-50 with MABN on Imagenet")
@@ -30,7 +32,7 @@ def get_args():
     parser.add_argument('--test_only', action='store_true', help='if only test the trained model')
     parser.add_argument('--local_rank', type=int, default=0)
     parser.add_argument('--gpu_num', type=int, default=8, help='number of gpus')
-
+    parser.add_argument('--record_statistics', action='store_true')
     args = parser.parse_args()
     return args
 
@@ -112,13 +114,19 @@ def train(model, device, args, start_epoch):
     train_iterator = iter(args.train_dataloader)
 
     model.train()
+    if args.record_statistics:
+        statistic_util = StatisticsUtil()
+        statistic_util.bind_bn_statistics(model, batch_size=args.batch_size)
+
     for i in range(start_epoch, args.total_epoch+1):
         Top1_err, Top5_err, Loss = 0.0, 0.0, 0.0
 
         if args.local_rank == 0:
             pbar = tqdm(range(5000))
 
-        for _ in range(5000):
+        for iteration in range(5000):
+            if args.record_statistics:
+                statistic_util.set_step(i * 5000 + iteration)
             data, label = next(train_iterator)
             data = data.cuda()
             target = label.type(torch.long).cuda()
